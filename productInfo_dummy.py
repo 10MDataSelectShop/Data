@@ -25,13 +25,10 @@ forty = [random.randint(0,5) for i in range(num)]
 
 df = pd.DataFrame()
 df['product_info_id'] = productId
-df['view'] = view
 df['ten'] = ten
 df['twenty'] = twenty
 df['thirty'] = thirty
-df['forty_over'] = forty
-
-print(df)
+df['over_forty'] = forty
 
 records = df.to_dict(orient='records')
 
