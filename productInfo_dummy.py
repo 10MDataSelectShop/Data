@@ -10,21 +10,12 @@ import sqlalchemy as db
 
 fake = Faker('ko_KR') # locale 정보 설정
 Faker.seed() # 초기 seed 설정
-num = 1000
+num = 1000000
 
 # 상품 번호
 productId = [i for i in range(1, num+1)]
 print(productId)
 
-
-
-# 상품 재고
-stock = [int(abs(np.random.normal(0,1)*100)) for i in range(num)]
-print(stock)
-
-# 상품 조회수
-view = [int(abs(np.random.standard_t(1)*1000))for i in range(num)]
-print(view)
 
 ten = [random.randint(0,10) for i in range(num)]
 twenty = [random.randint(0,10) for i in range(num)]
@@ -34,12 +25,11 @@ forty = [random.randint(0,5) for i in range(num)]
 
 df = pd.DataFrame()
 df['product_info_id'] = productId
-df['stock'] = stock
 df['view'] = view
 df['ten'] = ten
 df['twenty'] = twenty
 df['thirty'] = thirty
-df['forty'] = forty
+df['forty_over'] = forty
 
 print(df)
 

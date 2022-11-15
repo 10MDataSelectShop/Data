@@ -9,7 +9,7 @@ import sqlalchemy as db
 
 fake = Faker('ko_KR') # locale 정보 설정
 Faker.seed() # 초기 seed 설정
-num = 10000
+num = 5000000
 
 # pk
 order_id = [i for i in range(1, num+1)]
@@ -28,13 +28,13 @@ order_time = [fake.date_time_between(start_date = '-1y', end_date ='now') for i 
 print(order_time)
 
 # 상품 번호
-productNum = 1000
-product_id = [random.randint(1,productNum) for i in range(num)]
+productNum = 1000000
+product_id = [random.randint(1,productNum) for i in range(productNum)]
 print(product_id)
 
 # 유저 번호
-userNum = 20
-user_id = [random.randint(1,userNum) for i in range(num)]
+userNum = 1000
+user_id = [random.randint(1,userNum) for i in range(userNum)]
 print(user_id)
 
 df = pd.DataFrame()
@@ -45,7 +45,6 @@ df['order_time'] = order_time
 df['product_id'] = product_id
 df['user_id'] = user_id
 
-print(df)
 
 records = df.to_dict(orient='records')
 
