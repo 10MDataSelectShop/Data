@@ -29,12 +29,12 @@ print(order_time)
 
 # 상품 번호
 productNum = 1000000
-product_id = [random.randint(1,productNum) for i in range(productNum)]
+product_id = [random.randint(1,productNum) for i in range(num)]
 print(product_id)
 
 # 유저 번호
 userNum = 1000
-user_id = [random.randint(1,userNum) for i in range(userNum)]
+user_id = [random.randint(1,userNum) for i in range(num)]
 print(user_id)
 
 df = pd.DataFrame()
