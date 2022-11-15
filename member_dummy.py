@@ -9,7 +9,7 @@ import sqlalchemy as db
 
 fake = Faker('ko_KR') # locale 정보 설정
 Faker.seed() # 초기 seed 설정
-num = 1000
+num = 100000
 
 # 유저 id
 userId = [i for i in range(1, num+1)]
