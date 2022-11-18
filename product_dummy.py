@@ -92,7 +92,7 @@ content = [fake.sentence() for i in range(0,num)]
 price = [int(str(random.randint(1,50))+'0000') for i in range(num)]
 
 # 생성일자
-createdTime = [fake.date_time_between(start_date = '-3y', end_date ='-1y') for i in range(num)]
+createdTime = [fake.date_time_between(start_date = '-6y', end_date = '-5y') for i in range(num)]
 
 
 df = pd.DataFrame()

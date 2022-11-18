@@ -9,7 +9,7 @@ import sqlalchemy as db
 
 fake = Faker('ko_KR') # locale 정보 설정
 Faker.seed() # 초기 seed 설정
-num = 5000000
+num = 16000000
 
 # pk
 order_id = [i for i in range(1, num+1)]
@@ -24,7 +24,7 @@ order_status = ["주문완료"] * num
 print(order_status)
 
 # 주문일자
-order_time = [fake.date_time_between(start_date = '-1y', end_date ='now') for i in range(num)]
+order_time = [fake.date_time_between(start_date = '-5y', end_date ='now') for i in range(num)]
 print(order_time)
 
 # 상품 번호
@@ -58,7 +58,7 @@ engine = create_engine(f"mysql://{username}:{password}@{host}:{port}/{dbname}?ch
 
 with engine.connect() as conn:
     metadata = db.MetaData()
-    table = db.Table('order', metadata, autoload=True, autoload_with=engine)
+    table = db.Table('orders', metadata, autoload=True, autoload_with=engine)
     query = db.insert(table).values(records)
     result_proxy = conn.execute(query)
 

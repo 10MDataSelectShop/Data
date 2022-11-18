@@ -9,7 +9,7 @@ import sqlalchemy as db
 
 fake = Faker('ko_KR') # locale 정보 설정
 Faker.seed() # 초기 seed 설정
-num = 100000
+num = 400000
 
 # 유저 id
 userId = [i for i in range(1, num+1)]
@@ -57,7 +57,7 @@ engine = create_engine(f"mysql://{username}:{password}@{host}:{port}/{dbname}?ch
 
 with engine.connect() as conn:
     metadata = db.MetaData()
-    table = db.Table('member', metadata, autoload=True, autoload_with=engine)
+    table = db.Table('user', metadata, autoload=True, autoload_with=engine)
     query = db.insert(table).values(records)
     result_proxy = conn.execute(query)
 
