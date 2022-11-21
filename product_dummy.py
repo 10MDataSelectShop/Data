@@ -1,8 +1,8 @@
 from faker import Faker
-from faker.providers import DynamicProvider
 import random
 import pandas as pd
 import config
+import numpy as np
 from product_name_provider import ProductProvider
 from sqlalchemy import create_engine
 import sqlalchemy as db
@@ -13,6 +13,7 @@ num = 1000000
 
 # 상품 번호
 productId = [i for i in range(1, num+1)]
+# productId = [i for i in range(500001, 1000001)]
 
 # 카테고리 id
 categoryId = []
@@ -58,7 +59,7 @@ photo5 = ['https://gloryoneteam.s3.ap-northeast-2.amazonaws.com/%EC%9B%90%ED%94%
 
 
 # 상품 이름
-#title = [random.choice(title_data) for i in range(num)]
+
 for i in range(num):
     fake.add_provider(ProductProvider)
     id = random.randint(1,5)
@@ -81,19 +82,19 @@ for i in range(num):
 
 
 # 상품 내용
-content = [fake.sentence() for i in range(0,num)]
-
-# 상품 사진
-# photo_data = ["사진1","사진2","사진3"]
-# photo = [random.choice(photo_data) for i in range(num)]
-# photo = ["사진"] * num
+content = [fake.sentence() for i in range(num)]
 
 # 상품 가격
 price = [int(str(random.randint(1,50))+'0000') for i in range(num)]
 
 # 생성일자
-createdTime = [fake.date_time_between(start_date = '-6y', end_date = '-5y') for i in range(num)]
+createdTime = [fake.date_time_between(start_date = '-6y', end_date = '-3y') for i in range(num)]
 
+# 상품 재고
+stock = [int(abs(np.random.normal(0,1)*100)) for i in range(num)]
+
+# 상품 조회수
+view = [int(abs(np.random.standard_t(1)*1000))for i in range(num)]
 
 df = pd.DataFrame()
 df['product_id'] = productId
@@ -101,11 +102,12 @@ df['title'] = title
 df['content'] = content
 df['photo'] = photo
 df['price'] = price
+df['stock'] = stock
+df['view'] = view
 df['created_time'] = createdTime
 df['category_id'] = categoryId
 df['product_info_id'] = productId
-df['stock_id'] = productId
-df['view_id'] = productId
+
 
 records = df.to_dict(orient='records')
 

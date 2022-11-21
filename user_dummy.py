@@ -9,40 +9,33 @@ import sqlalchemy as db
 
 fake = Faker('ko_KR') # locale 정보 설정
 Faker.seed() # 초기 seed 설정
-num = 400000
+num = 200000
 
 # 유저 id
 userId = [i for i in range(1, num+1)]
-print(userId)
 
 # 이메일
-email = [fake.unique.free_email() for i in range(0, num)]
-print(email)
+email = [fake.free_email() for i in range(0, num)]
 
 # 비밀번호
-words = [fake.word() for i in range(num)]
-hashedPassword = [bcrypt.hashpw(i.encode('utf-8'),bcrypt.gensalt(rounds=10, prefix=b"2a")) for i in words]
-print(hashedPassword)
+# words = [fake.word() for i in range(num)]
+# hashedPassword = [bcrypt.hashpw(i.encode('utf-8'), bcrypt.gensalt(rounds=10, prefix=b"2a")) for i in words]
+# print(hashedPassword)
 
 # 연령대
-age = [random.choice(['10대','20대','30대','40대']) for i in range(num)]
-print(age)
+age = [random.choice(['10대','20대','30대','40대 이상']) for i in range(num)]
 
 # 관리자
 authority = ["ROLE_USER"] * num
-print(authority)
 
-created_at = [fake.date_time_between(start_date = '-3y', end_date ='now') for i in range(num)]
-print(created_at)
+created_at = [fake.date_time_between(start_date = '-4y', end_date ='now') for i in range(num)]
 
 df = pd.DataFrame()
 df['user_id'] = userId
 df['email'] = email
-df['password'] = hashedPassword
+df['password'] = userId
 df['age'] = age
 df['authority'] = authority
-
-print(df)
 
 records = df.to_dict(orient='records')
 
@@ -60,8 +53,4 @@ with engine.connect() as conn:
     table = db.Table('user', metadata, autoload=True, autoload_with=engine)
     query = db.insert(table).values(records)
     result_proxy = conn.execute(query)
-
-
-
-
 
