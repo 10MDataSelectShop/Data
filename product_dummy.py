@@ -6,13 +6,14 @@ import numpy as np
 from product_name_provider import ProductProvider
 from sqlalchemy import create_engine
 import sqlalchemy as db
+from datetime import datetime,timedelta
 
 fake = Faker('ko_KR') # locale 정보 설정
 
-num = 1000000
+num = 500000
 
 # 상품 번호
-productId = [i for i in range(1, num+1)]
+productId = [i for i in range(1500001, 1500001+num)]
 # productId = [i for i in range(500001, 1000001)]
 
 # 카테고리 id
@@ -87,14 +88,28 @@ content = [fake.sentence() for i in range(num)]
 # 상품 가격
 price = [int(str(random.randint(1,50))+'0000') for i in range(num)]
 
-# 생성일자
-createdTime = [fake.date_time_between(start_date = '-6y', end_date = '-3y') for i in range(num)]
+
+# 0~50만건 datetime(2017,1,1,0,0,0) ~ 2017년 2월까지
+# 50만건 ~ 100만건 datetime(2017,3,1,0,0,0) ~ 2017년 4월까지
+# 300만건
+# time1 = datetime(2018,1,1,0,0,0)
+# 350만건
+# time1 = datetime(2018,3,1,0,0,0)
+time1 = datetime(2017,5,1,0,0,0)
+createdTime = [0 for i in range(num)]
+for i in range(num):
+    createdTime[i] = time1+timedelta(seconds=10)
+    time1 = createdTime[i]
+
+print(createdTime[0],createdTime[num-1])
+
+#createdTime = [fake.date_time_between(start_date = '-6y', end_date = '-3y') for i in range(num)]
 
 # 상품 재고
 stock = [int(abs(np.random.normal(0,1)*100)) for i in range(num)]
 
 # 상품 조회수
-view = [int(abs(np.random.standard_t(1)*1000))for i in range(num)]
+view = [(-1)*int(abs(np.random.standard_t(1)*1000))for i in range(num)]
 
 df = pd.DataFrame()
 df['product_id'] = productId
