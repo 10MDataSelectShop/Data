@@ -12,7 +12,8 @@ Faker.seed() # 초기 seed 설정
 num = 1000000
 
 # 번호
-stockId = [i for i in range(1, num+1)]
+# stockId = [i for i in range(1, num+1)]
+stockId = [i for i in range(1000001, 2000001)]
 print(stockId)
 
 # 상품 재고

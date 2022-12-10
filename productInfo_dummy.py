@@ -13,7 +13,8 @@ Faker.seed() # 초기 seed 설정
 num = 1000000
 
 # 상품 번호
-productId = [i for i in range(1, num+1)]
+# productId = [i for i in range(1, num+1)]
+productId = [i for i in range(1000001, 2000001)]
 print(productId)
 
 

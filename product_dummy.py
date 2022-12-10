@@ -13,8 +13,9 @@ fake = Faker('ko_KR') # locale 정보 설정
 num = 500000
 
 # 상품 번호
-productId = [i for i in range(1500001, 1500001+num)]
+# productId = [i for i in range(1500001, 1500001+num)]
 # productId = [i for i in range(500001, 1000001)]
+productId = [i for i in range(8000001, 8000001+num)]
 
 # 카테고리 id
 categoryId = []
@@ -91,11 +92,17 @@ price = [int(str(random.randint(1,50))+'0000') for i in range(num)]
 
 # 0~50만건 datetime(2017,1,1,0,0,0) ~ 2017년 2월까지
 # 50만건 ~ 100만건 datetime(2017,3,1,0,0,0) ~ 2017년 4월까지
-# 300만건
-# time1 = datetime(2018,1,1,0,0,0)
-# 350만건
-# time1 = datetime(2018,3,1,0,0,0)
-time1 = datetime(2017,5,1,0,0,0)
+# 100만건 ~ 150만건 datetime(2017,5,1,0,0,0) ~ 2017년 6월까지
+# 150만건 ~ 200만건 datetime(2017,7,1,0,0,0) ~ 2017년 8월까지
+# 200만건 ~ 250만건 datetime(2017,9,1,0,0,0) ~ 2017년 10월까지
+# 250만건 ~ 300만건 datetime(2017,11,1,0,0,0) ~ 2017년 12월까지
+# 300만건 ~ 350만건 datetime(2018,1,1,0,0,0) ~ 2018년 2월까지
+# 350만건 ~ 400만건 datetime(2018,3,1,0,0,0) ~ 2018년 4월까지
+# 400만건 ~ 450만건 datetime(2018,5,1,0,0,0) ~ 2018년 6월까지
+# 450만건 ~ 500만건 datetime(2018,7,1,0,0,0) ~ 2018년 6월까지
+# 500만건 ~ 550만건 datetime(2018,9,1,0,0,0) ~ 2018년 6월까지
+
+time1 = datetime(2017,1,1,0,0,0)
 createdTime = [0 for i in range(num)]
 for i in range(num):
     createdTime[i] = time1+timedelta(seconds=10)

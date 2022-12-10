@@ -12,7 +12,9 @@ Faker.seed() # 초기 seed 설정
 num = 1000000
 
 # 번호
-viewId = [i for i in range(1, num+1)]
+# viewId = [i for i in range(1, num+1)]
+viewId = [i for i in range(1000001, 2000001)]
+
 print(viewId)
 
 # 상품 조회수
